@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,30 +10,44 @@
     <script src="./main.js" defer></script>
 </head>
 <body>
-    <div>
-        <h1 class="inkomst-header">Inkomst</h1>
-
-        <div class="inkomst-lista"></div>
-
-        <h1 class="kostnad-header">Kostnad</h1>
-
-        <div class="kostnad-lista"></div>
-
-    </div>
-
     <form>
-
-        <select name="" id="">
-            <option value="choose" class="choose">Choose</option>
-            <option value="+" class="plus">+</option>
-            <option value="-" class="minus">-</option>
-
-            <input type="text" name="" id="besk" placeholder="Beskrivning">
-            <input type="number" name="" id="num" placeholder="Kr">
-            <button>Lägg till</button>
-
-        </select>
-
+        <div class="header">
+            <h1>Balansräknare</h1>
+        </div>
+        <div class="input-inline">
+            <div class="input-text">
+                <label>Beskrivning</label>
+                <input type="text" class="desc" required>
+            </div>
+            <div class="input-number">
+                <label>Summa</label>
+                <input type="number" class="num" required>
+            </div>
+        </div>
+        <div class="select-one">
+            <select name="Ekonomi" required>
+                <option value="choose">Välj inkomst/Utgift</option>
+                <option value="+"> + /inkomst</option>
+                <option value="-"> - /utgift</option>
+            </select>
+        </div>
+        <button class="btn">Lägg till</button>
     </form>
+    <section class="section-1">
+        <h1>Totalbelopp</h1>
+        <div class="vinst"></div>
+    </section>
+
+<div class="section-2">  
+    <section>
+        <h1 class="in">Inkomst</h1>
+        <div class="inkomst-container"></div>
+    </section>
+
+    <section>
+        <h1 class="ut">Utgift</h1>
+        <div class="utgift-container"></div>
+    </section>
+</div>    
 </body>
 </html>

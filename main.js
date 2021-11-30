@@ -1,42 +1,49 @@
-// när anavädare trycker på add button :- 
+// lägger till när man klickar på "lägg till"
+document
+.querySelector("button")
+.addEventListener("click", countBudget)
+//de olika listorna där summorna ska hamna +/-
+const inkomstLista= [];
+const utgiftLista= [];
+// så den inte nollställer efter varje klick
+function countBudget(e) {
+   e.preventDefault();
 
-// event :- addEventListener()
+  let costSum= 0;
+  let incomeSum=0;
+// Beskrivning / tal 
+  const select=  document.querySelector("select");
+  const description = document.querySelector(".desc").value;
+  const number = document.querySelector(".num").value;
+//pushar in om det blir positivt value i inkostlistan i html
+  if(select.value=="+"){
+    document
+   .querySelector(".inkomst-container")
+   .innerHTML += `<li class="inkomst-lista"> ${description} : ${number} </li>`
 
-document.querySelector("button").addEventListener("click", calculateBudget)
+   const inkomstDiv = document.querySelector(".inkomst-container");
 
-function calculateBudget(e) {
-    e.preventDefault();    
-
-const option= document.querySelector("select");
-console.log(option.value);
-// om användare väljer + ska description och value hamnas i inkomst-lista diven
-if(option.value=="+"){    
-    //console.log(addOption)
-  const description =  document.querySelector("#besk").value;
-  const value = document.querySelector("#num").value;
- const div= document.querySelector(".inkomst-lista");
- // console.log(div)
- div.innerHTML   += `<li>${description}     ${value}</li>`
-
-
+   inkomstLista.push(number)
 }
- //om användare väljer - ska description och value hamnas i kostnad-lista diven
-
-if(option.value =="-"){
-    //console.log(minusOption)
-    const description = document.querySelector("#besk").value;
-    const value = document.querySelector("#num").value;
-    const kostnadDiv= document.querySelector(".kostnad-lista");
-   // console.log(kostnadDiv)
-    kostnadDiv.innerHTML += `<li>${description}     ${value}</li>`;
- }
-//const chooseOption = document.querySelector(".choose").textContent;
-//console.log(chooseOption);
-//if()
-if(option.value=="choose") 
-{
-    alert("Hej, Du måste välja från + eller -")
+// om de inte är ett posetivt tal utan - så pushas den in i utgifter istället
+else if(select.value=="-"){
+    document
+    .querySelector(".utgift-container")
+    .innerHTML += `<li class="utgift-lista"> ${description} :${number} </li>`
+    utgiftLista.push(number)
 }
-  
-
+// om det varken är positivt eller negativt så kommer det upp medelande att man måste välja +/-
+else if(select.value=="choose") {
+    alert("Hej välja mellan + / -")
+}
+inkomstLista.map( (e)=> {
+    incomeSum += parseFloat(e)
+})
+utgiftLista.map( (e)=> {
+    costSum += parseFloat(e)
+})
+// totalen hamnar i div vinst, inkomst - kostnad = total
+document
+.querySelector(".vinst")
+.innerHTML = incomeSum -costSum;
 }
